@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ parent() }} - Vos logements{% endblock %}
+
+{% block body %}
+    <h1>Vos logements</h1>
+    {% if not contacts %}
+    <div class="alert alert-danger" role="alert">
+        Veuillez ajouter un contact avant d'ajouter un nouveau logement.
+        <a href="{{ path('app_contact_new') }}" class="btn btn-outline-success position-absolute top-50 end-0 translate-middle-y">+ Ajouter un nouveau contact</a>
+    </div>
+    {% else %}
+    <a href="{{ path('app_gite_new') }}" class="btn btn-outline-success my-4">+ Ajouter un nouveau logement</a>
+    {% endif %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Localisation</th>
+                <th>Prix Haute Saison</th>
+                <th>Prix Basse Saison</th>
+                <th>Contact</th>
+                <th>Options</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for gite in gites %}
+            <tr>
+                <td>{{ gite.title }}</td>
+                <td>{{ gite.city ~", "~ gite.city.departmentCode.code}}</td>
+                <td>{{ gite.prixHauteSaison }}</td>
+                <td>{{ gite.prixBasseSaison }}</td>
+                <td>{{ gite.Contact }}</td>
+                {# <td class="bg-danger">Options à définir</td> #}
+                <td>
+                {# Afficher le tableau en fonction de l'id du gite => remplacer app_option_price_index par app_option_price_show + ?? #}
+                    <a href="{{ path('app_option_price_index', {'id_gite': gite.id}) }}" class="btn btn-outline-info">Afficher</a>
+                    <a href="{{ path('app_option_price_new', {'id_gite': gite.id}) }}" class="btn btn-outline-secondary">Ajouter</a>
+                </td>
+                <td>
+                    <a href="{{ path('app_gite_show', {'id': gite.id}) }}" class="btn btn-primary">Afficher</a>
+                    <a href="{{ path('app_gite_edit', {'id': gite.id}) }}" class="btn btn-success">Modifier</a>
+                    {{ include('gite/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="12">Aucun logement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

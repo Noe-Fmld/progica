@@ -1,0 +1,30 @@
+{{ form_start(form) }}
+    {{ form_row(form.title, {
+        label: 'Titre'
+    }) }}
+    {{ form_row(form.description) }}
+    {{ form_row(form.image) }}
+    {{ form_row(form.ville, {
+        label: 'Ville'
+    }) }}
+    
+    {{ form_row(form.surface) }}
+    {{ form_row(form.nbCouchage, {
+        label: 'Nombre de couchage'
+    }) }}
+    {{ form_row(form.nbChambre, {
+        label: 'Nombre de chambre'
+    }) }}
+    {{ form_row(form.isAnimalAccepted, {
+        label: 'Acceptez-vous les animaux ?'
+    }) }}
+    {{ form_row(form.prixAnimal, {'attr': {'disabled': 'disabled'
+    }}) }}
+    {{ form_row(form.prixHauteSaison) }}
+    {{ form_row(form.prixBasseSaison) }}
+    {{ form_row(form.contact) }}
+    
+
+    <button type="submit" class="btn btn-success">Enregistrer</button>
+{{ form_end(form) }}
+

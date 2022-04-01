@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit OptionPrice{% endblock %}
+
+{% block body %}
+    <h1>Edit OptionPrice</h1>
+
+    {{ include('option_price/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_option_price_index') }}">back to list</a>
+
+    {{ include('option_price/_delete_form.html.twig') }}
+{% endblock %}

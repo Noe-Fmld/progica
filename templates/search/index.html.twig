@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Recherche{% endblock %}
+
+{% block body %}
+
+{{ include('search/_form.html.twig') }}
+
+
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+<script>
+    $(document).ready(function() {
+        $('.js-get-regions').select2({
+            minimumInputLength : 2,
+            ajax: {
+                url: "{{ path("app_get_regions") }}",
+                cache: false
+            }
+        });
+
+
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('.js-get-cities').select2({
+            minimumInputLength : 2,
+            ajax: {
+                url: "{{ path("app_get_cities") }}",
+                cache: false
+            }
+        });
+
+
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Vos options{% endblock %}
+
+{% block body %}
+    <h1>Vos options</h1>
+
+    {# Pourquoi ça fonctionne pas ?
+    <h1>Option(s) pour votre logement : {{ option_prices.gite.title }}</h1> #}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Option</th>
+                <th>Prix</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for option_price in option_prices %}
+            <tr>
+                <td>{{ option_price.optionGite.name }}</td>
+                <td>{{ option_price.price }}</td>
+                <td>
+                    <a href="{{ path('app_option_price_show', {'id': option_price.id}) }}" class="btn btn-primary">Afficher</a>
+                    <a href="{{ path('app_option_price_edit', {'id': option_price.id}) }}" class="btn btn-success">Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucune option trouvée</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <a href="{{ path('app_gite_index') }}" class="btn btn-primary mt-2">← Retour à vos logements</a>
+{% endblock %}

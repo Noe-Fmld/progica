@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Gite : {{ gite.title }}{% endblock %}
+
+{% block body %}
+    <h1>Gite</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Titre</th>
+                <td>{{ gite.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ gite.description }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ gite.image }}</td>
+            </tr>
+            <tr>
+                <th>Surface</th>
+                <td>{{ gite.surface }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de couchage</th>
+                <td>{{ gite.nbCouchage }}</td>
+            </tr>
+            <tr>
+                <th>Nombre de chambre</th>
+                <td>{{ gite.nbChambre }}</td>
+            </tr>
+            <tr>
+                <th>Acceptez-vous les animaux ?</th>
+                <td>{{ gite.isAnimalAccepted ? 'Oui' : 'Non' }}</td>
+            </tr>
+            <tr>
+                <th>Prix Animal</th>
+                <td>{{ gite.isAnimalAccepted ? gite.prixAnimal : '/'}}</td>
+            </tr>
+            <tr>
+                <th>Prix Haute Saison</th>
+                <td>{{ gite.prixHauteSaison }}</td>
+            </tr>
+            <tr>
+                <th>Prix Basse Saison</th>
+                <td>{{ gite.prixBasseSaison }}</td>
+            </tr>
+            <tr>
+                <th>Contact</th>
+                <td>{{ gite.contact }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_gite_index') }}" class="btn btn-primary">← Retour à la liste</a>
+
+    <a href="{{ path('app_gite_edit', {'id': gite.id}) }}" class="btn btn-success">Modifier</a>
+
+    {{ include('gite/_delete_form.html.twig') }}
+{% endblock %}

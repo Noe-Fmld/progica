@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Nouveau logement{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un nouveau Gite</h1>
+
+    {{ include('gite/_form.html.twig') }}
+
+    <a href="{{ path('app_gite_index') }}" class="btn btn-primary mt-2">← Retour à la liste</a>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+        const checkbox = document.getElementById("gite_isAnimalAccepted")
+        const inputPriceAnimal = document.getElementById("gite_prixAnimal")
+        checkbox.addEventListener("change", function(){
+            if(checkbox.checked){
+                inputPriceAnimal.disabled = false
+            } else{
+                inputPriceAnimal.disabled = true
+                inputPriceAnimal.value = null
+            }
+        })
+    })
+    
+</script>
+<script>
+    $(document).ready(function() {
+        $('.js-get-cities').select2({
+            minimumInputLength : 2,
+            ajax: {
+                url: "{{ path("app_get_cities") }}",
+                cache: false
+            }
+        });
+
+
+    });
+</script>
+{% endblock %}

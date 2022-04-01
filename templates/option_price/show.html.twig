@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OptionPrice{% endblock %}
+
+{% block body %}
+    <h1>OptionPrice</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Option</th>
+                <td>{{ option_price.optionGite.name }}</td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>{{ option_price.price }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_gite_index') }}" class="btn btn-primary mt-2">← Retour à vos logements</a>
+
+    <a href="{{ path('app_option_price_edit', {'id': option_price.id}) }}">edit</a>
+
+    {{ include('option_price/_delete_form.html.twig') }}
+{% endblock %}
