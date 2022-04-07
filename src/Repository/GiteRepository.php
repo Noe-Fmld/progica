@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Gite;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Expr\Value;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
@@ -73,4 +74,42 @@ class GiteRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    // 1- Trouver les gites d'un dpt en excluant quelques ID (passer les dpt à chercher et les ID à exclure)
+
+    public function findByDpt($dpt_code_a_passer, array $id_a_exclure)
+    {
+        
+        return $this->createQueryBuilder('g')
+            ->innerJoin('g.city', 'c')
+            ->innerJoin('c.departmentCode', 'd')
+            ->andWhere('d = :val')
+            ->andWhere('c.id NOT IN (:exclu)')
+            ->setParameter('val', $dpt_code_a_passer)
+            ->setParameter('exclu', $id_a_exclure)
+            ->orderBy('g.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    // 2- Trouver les gites d'une reg en excluant quelques ID (passer la region à chercher et les ID à exclure)
+    public function findByReg($reg_code_a_passer, array $id_a_exclure)
+    {
+        
+        return $this->createQueryBuilder('g')
+            ->innerJoin('g.city', 'c')
+            ->innerJoin('c.departmentCode', 'd')
+            ->innerJoin('d.regionCode', 'r')
+            ->andWhere('r = :val')
+            ->andWhere('d.code NOT IN (:exclu)')
+            ->setParameter('val', $reg_code_a_passer)
+            ->setParameter('exclu', $id_a_exclure)
+            ->orderBy('g.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+
 }
