@@ -20,7 +20,7 @@
 
     <a href="{{ path('app_gite_index') }}" class="btn btn-primary mt-2">← Retour à vos logements</a>
 
-    <a href="{{ path('app_option_price_edit', {'id': option_price.id}) }}">edit</a>
+    <a href="{{ path('app_option_price_edit', {'id': option_price.id}) }}" class="btn btn-success">Modifier</a>
 
     {{ include('option_price/_delete_form.html.twig') }}
 {% endblock %}

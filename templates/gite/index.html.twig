@@ -35,8 +35,8 @@
                 {# <td class="bg-danger">Options à définir</td> #}
                 <td>
                 {# Afficher le tableau en fonction de l'id du gite => remplacer app_option_price_index par app_option_price_show + ?? #}
-                    <a href="{{ path('app_option_price_index', {'id_gite': gite.id}) }}" class="btn btn-outline-info">Afficher</a>
-                    <a href="{{ path('app_option_price_new', {'id_gite': gite.id}) }}" class="btn btn-outline-secondary">Ajouter</a>
+                    <a href="{{ path('app_option_price_index', {'id': gite.id}) }}" class="btn btn-outline-info">Afficher</a>
+                    <a href="{{ path('app_option_price_new', {'id': gite.id}) }}" class="btn btn-outline-secondary">Ajouter</a>
                 </td>
                 <td>
                     <a href="{{ path('app_gite_show', {'id': gite.id}) }}" class="btn btn-primary">Afficher</a>

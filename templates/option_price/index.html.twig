@@ -3,10 +3,8 @@
 {% block title %}{{ parent() }} - Vos options{% endblock %}
 
 {% block body %}
-    <h1>Vos options</h1>
+    <h1>Vos options pour le logement : {{gite.title}}</h1>
 
-    {# Pourquoi ça fonctionne pas ?
-    <h1>Option(s) pour votre logement : {{ option_prices.gite.title }}</h1> #}
 
     <table class="table">
         <thead>
@@ -20,10 +18,10 @@
         {% for option_price in option_prices %}
             <tr>
                 <td>{{ option_price.optionGite.name }}</td>
-                <td>{{ option_price.price }}</td>
+                <td>{{ option_price.price }} €</td>
                 <td>
-                    <a href="{{ path('app_option_price_show', {'id': option_price.id}) }}" class="btn btn-primary">Afficher</a>
                     <a href="{{ path('app_option_price_edit', {'id': option_price.id}) }}" class="btn btn-success">Modifier</a>
+                    {{ include('option_price/_delete_form.html.twig') }}
                 </td>
             </tr>
         {% else %}
