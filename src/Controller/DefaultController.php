@@ -18,7 +18,7 @@ class DefaultController extends AbstractController
     public function index(GiteRepository $giteRepository): Response
     {
         return $this->render('default/index.html.twig', [
-            'gites' => $giteRepository->findAll(),
+            'gites' => $giteRepository->findBy([], ['id' => 'DESC']),
             
         ]);
     }
