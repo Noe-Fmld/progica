@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Gite;
 use App\Repository\GiteRepository;
 use App\Repository\CitiesRepository;
+use App\Repository\OptionPriceRepository;
 use App\Repository\RegionsRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +20,16 @@ class DefaultController extends AbstractController
         return $this->render('default/index.html.twig', [
             'gites' => $giteRepository->findAll(),
             
+        ]);
+    }
+    
+    #[Route('/rooms/{id}', name: 'app_show_one_gite')]
+    public function showOneGite(Gite $gite, OptionPriceRepository $optionPriceRepository): Response
+    {
+        $options = $optionPriceRepository->findByGite($gite);
+        return $this->render('default/onegite.html.twig', [
+            'gite' => $gite,
+            'options' => $options
         ]);
     }
 

@@ -14,6 +14,7 @@
     {% else %}
         {% for gite_city in gites_city %}
             <div class="col">
+            <a href="{{ path('app_show_one_gite', {'id': gite_city.id}) }}" class="text-reset text-decoration-none">
             <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('{{gite_city.image}}'); background-size : cover; background-repeat: no-repeat">
                 <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
                 <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{gite_city.title}}</h2>
@@ -28,6 +29,7 @@
                 </ul>
                 </div>
             </div>
+            </a>
             </div>
         {% endfor %}
     {% endif %}
@@ -39,6 +41,7 @@
     {% else %}
         {% for gite_department in gites_department %}
             <div class="col">
+            <a href="{{ path('app_show_one_gite', {'id': gite_department.id}) }}" class="text-reset text-decoration-none">
             <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('{{gite_department.image}}'); background-size : cover; background-repeat: no-repeat">
                 <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
                 <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{gite_department.title}}</h2>
@@ -53,6 +56,7 @@
                 </ul>
                 </div>
             </div>
+            </a>
             </div>
         {% endfor %}
     {% endif %}
@@ -64,6 +68,7 @@
     {% else %}
         {% for gite_region in gites_region %}
             <div class="col">
+            <a href="{{ path('app_show_one_gite', {'id': gite_region.id}) }}" class="text-reset text-decoration-none">
             <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('{{gite_region.image}}'); background-size : cover; background-repeat: no-repeat">
                 <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
                 <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">{{gite_region.title}}</h2>
@@ -78,6 +83,7 @@
                 </ul>
                 </div>
             </div>
+            </a>
             </div>
         {% endfor %}
     {% endif %}
